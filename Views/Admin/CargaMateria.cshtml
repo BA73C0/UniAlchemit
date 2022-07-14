@@ -22,7 +22,9 @@
 
             <input class="input-field" placeholder="ID de la materia correlativa n2" type="text" id="IDcorrelativa2" name="IDcorrelativa2" value="@Model.IDcorrelativa2" />
 
-            <input class="input-field" placeholder="Semestre" type="text" id="Semestre" name="Semestre" value="@Model.Semestre" />
+            <input class="input-field" placeholder="Semestre" type="number" min="1" max="2" id="Semestre" name="Semestre" value="@Model.Semestre" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.Semestre)</span>
+
             <br /><br />
             <button class="submit-btn">Crear</button>
         </form>

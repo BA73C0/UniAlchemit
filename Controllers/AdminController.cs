@@ -12,6 +12,7 @@ namespace Pruebas2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [HttpGet]
         public ActionResult ExitoRegMateria(string nombre)
         {
             ViewBag.Message = nombre;
@@ -19,6 +20,7 @@ namespace Pruebas2.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult CargaMateria()
         {
             return View(new MateriaViewModel());
@@ -29,6 +31,7 @@ namespace Pruebas2.Controllers
         {
             ValidarCarrera(model);
             ValidarMateria(model);
+            ValidarSemestre(model);
 
             if (ModelState.IsValid)
             {
@@ -40,63 +43,7 @@ namespace Pruebas2.Controllers
             return View(model);
         }
 
-        private void ValidarCarrera(MateriaViewModel model)
-        {
-            bool carreraExiste = false;
-
-            List<CarreraC> carreras = db.Carreras.ToList();
-
-            foreach (CarreraC carrera in carreras)
-            {
-                if (model.IDcarrera == carrera.ID.Trim())
-                {
-                    carreraExiste = true;
-                }
-            }
-            if (carreraExiste != true)
-            {
-                ModelState.AddModelError(nameof(model.IDcarrera), "La carrera no existe");
-            }
-        }
-        private void ValidarCarrera1(CarreraViewModel model)
-        {
-            bool carreraExiste = false;
-
-            List<CarreraC> carreras = db.Carreras.ToList();
-
-            foreach (CarreraC carrera in carreras)
-            {
-                if (model.ID == carrera.ID.Trim())
-                {
-                    carreraExiste = true;
-                    break;
-                }
-            }
-            if (carreraExiste == true)
-            {
-                ModelState.AddModelError(nameof(model.ID), "La carrera ya existe");
-            }
-        }
-        private void ValidarMateria(MateriaViewModel model)
-        {
-            bool materiaExiste = false;
-
-            List<MateriaC> materias = db.Materias.ToList();
-
-            foreach (MateriaC materia in materias)
-            {
-                if (model.ID == materia.ID.Trim())
-                {
-                    materiaExiste = true;
-                    break;
-                }
-            }
-            if (materiaExiste == true)
-            {
-                ModelState.AddModelError(nameof(model.ID), "La materia ya existe");
-            }
-        }
-
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.Message = "Bienvenido/a Admin";
@@ -126,6 +73,52 @@ namespace Pruebas2.Controllers
             ViewBag.Message = nombre;
 
             return View();
+        }
+
+
+        private void ValidarCarrera(MateriaViewModel model)
+        {
+            try
+            {
+                CarreraC carrera = db.Carreras.First(d => d.ID == model.IDcarrera);
+            }
+            catch
+            {
+                ModelState.AddModelError(nameof(model.IDcarrera), "La carrera no existe");
+            }
+        }
+        private void ValidarCarrera1(CarreraViewModel model)
+        {
+            List<CarreraC> carreras = db.Carreras.ToList();
+
+            foreach (CarreraC carrera in carreras)
+            {
+                if (model.ID == carrera.ID.Trim())
+                {
+                    ModelState.AddModelError(nameof(model.ID), "La carrera ya existe");
+                    break;
+                }
+            }
+        }
+        private void ValidarMateria(MateriaViewModel model)
+        {
+            List<MateriaC> materias = db.Materias.ToList();
+
+            foreach (MateriaC materia in materias)
+            {
+                if (model.ID == materia.ID.Trim())
+                {
+                    ModelState.AddModelError(nameof(model.ID), "La materia ya existe");
+                    break;
+                }
+            }
+        }
+        private void ValidarSemestre(MateriaViewModel model)
+        {
+            if (model.Semestre > 2 && model.Semestre < 1) 
+            {
+                ModelState.AddModelError(nameof(model.Semestre), "Solamente hay dos semestres");
+            }
         }
     }
 }

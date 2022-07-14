@@ -22,6 +22,8 @@ namespace Pruebas2.Controllers
         [HttpPost]
         public ActionResult AsignarNota(NotaViewModel examen)
         {
+            ValidarNota(examen);
+
             if (ModelState.IsValid)
             {
                 Inscripcion inscripcion = db.Inscripcion.First(i => i.Id == examen.Id);
@@ -79,7 +81,6 @@ namespace Pruebas2.Controllers
                 return View(reporteVacio);
             }
 
-
             foreach (Inscripcion materia in materias)
             {
                 ReporteViewModel reporteModel = new ReporteViewModel(materia)
@@ -94,20 +95,21 @@ namespace Pruebas2.Controllers
             return View(reporte);
         }
 
+
         private void ValidarMateria(MateriaLogInViewModel model)
         {
-            bool mate = true;
-
             List<MateriaC> materias = db.Materias.Where(d => d.ID == model.ID).ToList();
 
             if (materias.Count() == 0)
             {
-                mate = false;
-            }
-
-            if (mate == false)
-            {
                 ModelState.AddModelError(nameof(model.ID), "El ID no corresponde a una materia");
+            }
+        }
+        private void ValidarNota(NotaViewModel model)
+        {
+            if (model.Nota < -1 && model.Nota > 10)
+            {
+                ModelState.AddModelError(nameof(model.Nota), "La nota solo puede tener valores entre -1 y 10");
             }
         }
     }

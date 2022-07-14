@@ -132,6 +132,7 @@ namespace Pruebas2.Controllers
             ValidarMateriaExiste(model);
             Validar7materias(model);
             ValidarCorrelativas(model);
+            ValidarMateriaConCarrera(model);
 
             if (ModelState.IsValid)
             {
@@ -235,6 +236,23 @@ namespace Pruebas2.Controllers
 
         #region Validaciones
 
+        private void ValidarMateriaConCarrera(InscripcionViewModel model)
+        {
+            bool materiacorrecta = false;
+
+            Alumno alumno = db.Alumnos.First(d => d.ID == model.IdAlumno);
+
+            MateriaC materia = db.Materias.First(d => d.ID == model.IDMateria);
+
+            if(alumno.IDcarrera == materia.IDcarrera)
+            {
+                materiacorrecta = true;
+            }
+            if (materiacorrecta == false)
+            {
+                ModelState.AddModelError(nameof(model.IDMateria), "Esta materia no corresponde a tu carrera");
+            }
+        }
         private void ValidarInscripcion(LogInViewModel model)
         {
             bool alue = true;

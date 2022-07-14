@@ -14,8 +14,9 @@
 
             <input class="input-field" placeholder="Fecha" type="date" id="Fecha" name="Fecha" value="@Model.Fecha" />
 
-            <input class="input-field" placeholder="Nota" type="number" id="Nota" name="Nota" value="@Model.Nota" />
-            <br /><br /><br />
+            <input class="input-field" placeholder="Nota" min="-1" max="10" type="number" id="Nota" name="Nota" value="@Model.Nota" />
+
+            <br /><br />
             <button class="submit-btn">Cargar</button>
         </form>
         <br /><br /><br />

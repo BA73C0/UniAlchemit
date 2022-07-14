@@ -29,7 +29,15 @@
                         <td>@inscripcion.IDMateria</td>
                         <td>@inscripcion.Materia</td>
                         <td>@inscripcion.Fecha</td>
-                        <td>@inscripcion.Nota</td>
+                        @if (inscripcion.Nota == 0)
+                        {
+                            <td> </td>
+                        }
+                        else
+                        {
+                            <td>@inscripcion.Nota</td>
+                        }
+
                         @if (inscripcion.Nota >= 4)
                         {
                             <td>Aprobado</td>

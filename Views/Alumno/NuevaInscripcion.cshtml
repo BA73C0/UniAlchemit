@@ -6,8 +6,8 @@
 
 <body style="background-color: #1BB769; font-family: Arial">
     <div class="caja">
-        <div id="btn">
-            <h1 class="boton-switch">Inscripción</h1>
+        <div style="text-align: center">
+            <h2>Inscripción</h2>
         </div>
         <form id="der" class="formulario" action="/Alumno/NuevaInscripcion" method="POST">
             <input class="input-field" id="IdAlumno" name="IdAlumno" value="@Model.IdAlumno" type="hidden" />
@@ -16,7 +16,8 @@
 
             <button class="submit-btn">Registrar</button>
         </form>
-        <div class="caja2">
+        <br /><br /><br />
+        <div class="caja3">
             <button class="submit-btn" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/MateriasAlu/{0}", Model.IdAlumno)'">Mis Materias</button>
         </div>
     </div>
