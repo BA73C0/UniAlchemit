@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Asignar Nota";
+}
+
+@model Pruebas2.Models.NotaViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <div style="text-align: center">
+            <h1>Asignar nota</h1>
+        </div>
+        <form id="izq" class="formulario" action="/Profesor/AsignarNota" method="POST">
+            <input class="input-field" type="hidden" id="Id" name="ID" value="@Model.Id" hidden />
+
+            <input class="input-field" placeholder="Fecha" type="date" id="Fecha" name="Fecha" value="@Model.Fecha" />
+
+            <input class="input-field" placeholder="Nota" type="number" id="Nota" name="Nota" value="@Model.Nota" />
+            <br /><br /><br />
+            <button class="submit-btn">Cargar</button>
+        </form>
+        <br /><br /><br />
+        <div class="caja3">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/Admin/CargaMateria'">Nueva Materia</button>
+        </div>
+    </div>
+</body>

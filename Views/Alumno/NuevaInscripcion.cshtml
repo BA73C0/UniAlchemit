@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Nueva Inscripción";
+}
+
+@model Pruebas2.Models.InscripcionViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <div id="btn">
+            <h1 class="boton-switch">Inscripción</h1>
+        </div>
+        <form id="der" class="formulario" action="/Alumno/NuevaInscripcion" method="POST">
+            <input class="input-field" id="IdAlumno" name="IdAlumno" value="@Model.IdAlumno" type="hidden" />
+            <input class="input-field" placeholder="ID de la materia" type="text" id="IDMateria" name="IDMateria" value="@Model.IDMateria" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.IDMateria)</span><br /><br />
+
+            <button class="submit-btn">Registrar</button>
+        </form>
+        <div class="caja2">
+            <button class="submit-btn" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/MateriasAlu/{0}", Model.IdAlumno)'">Mis Materias</button>
+        </div>
+    </div>
+</body>

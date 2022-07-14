@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Examenes";
+}
+
+@model List<Pruebas2.Models.ReporteViewModel>
+
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <br />
+    <div class="submit-btn3">
+        <h1>@Model[0].IDMateria</h1>
+    </div>
+    <br />
+    <div class="caja4">
+        <table class="table table-striped">
+            <tr>
+                <th>ID del Alumno</th>
+                <th>Nombre y Apellido</th>
+                <th>ID de la Materia</th>
+                <th>Nombre de la Materia</th>
+                <th>Fecha</th>
+                <th>Nota</th>
+            </tr>
+            @if (Model[0].Materia != "Ejemplo")
+            {
+                foreach (var inscripcion in Model)
+                {
+                    <tr>
+                        <td>@inscripcion.IdAlumno</td>
+                        <td>@inscripcion.Nombre @inscripcion.Apellido</td>
+                        <td>@inscripcion.IDMateria</td>
+                        <td>@inscripcion.Materia</td>
+                        <td>@inscripcion.Fecha</td>
+                        @if (inscripcion.Nota == 0)
+                        {
+                            <td><a href='@string.Format("https://localhost:44348/Profesor/AsignarNota/{0}", inscripcion.Id)' class="btn btn-lg">Asignar</a></td>
+                        }
+                        else
+                        {
+                            <td>@inscripcion.Nota</td>
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='https://localhost:44348/Profesor'">Volver</button>
+
+</body>
+

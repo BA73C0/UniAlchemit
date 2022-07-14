@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Materias Aprobadas";
+}
+
+@model List<Pruebas2.Models.ReporteViewModel>
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <br />
+    <div class="submit-btn3">
+        <h1>Materias Aprobadas</h1>
+    </div>
+    <br />
+    <div class="caja4">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Materia</th>
+                <th>Semestre</th>
+                <th>Fecha</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Cancelar</th>
+            </tr>
+            @if (Model[0].Materia != "Ejemplo")
+            {
+                foreach (var inscripcion in Model)
+                {
+                    <tr>
+                        <td>@inscripcion.IDMateria</td>
+                        <td>@inscripcion.Materia</td>
+                        <td>@inscripcion.Semestre</td>
+                        <td>@inscripcion.Fecha</td>
+                        <td>@inscripcion.Nota</td>
+                        @if (inscripcion.Nota >= 4)
+                        {
+                            <td>Aprobado</td>
+                        }
+                        <td><a href='@string.Format("https://localhost:44348/Alumno/CancelarIns/%7B0%7D", inscripcion.Id)'>Sí</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/MateriasAlu/{0}", Model[0].IdAlumno)'">Volver</button>
+</body>
+

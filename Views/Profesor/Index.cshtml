@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Materias Profesor";
+}
+
+@model Pruebas2.Models.MateriaLogInViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <br />
+        <div style="text-align: center">
+            <h1>Materia</h1>
+        </div>
+        <form id="uno" class="formulario" action="/Profesor/Index" method="POST">
+            <input class="input-field" placeholder="ID de la materia" type="text" id="ID" name="ID" value="@Model.ID" required />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.ID)</span><br />
+            <br /><br />
+            <button class="submit-btn">Ingresar</button>
+        </form>
+        <br />
+        <div class="caja3">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/'">Volver</button>
+        </div>
+    </div>
+</body>

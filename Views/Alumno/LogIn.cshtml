@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Log In";
+}
+
+@model Pruebas2.Models.LogInViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <br />
+        <div style="text-align: center">
+            <h2>Log In</h2>
+        </div>
+        <form id="uno" class="formulario" action="/Alumno/LogIn" method="POST">
+            <input class="input-field" placeholder="ID del estudiante" type="text" id="ID" name="ID" value="@Model.Id" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.Id)</span>
+            <br /><br /><br />
+            <button class="submit-btn">Ingresar</button>
+        </form>
+        <div class="caja3">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/Alumno/CrearAlu'">Volver</button>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Registrarse";
+}
+
+@model Pruebas2.Models.AlumnoViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <div style="text-align: center">
+            <h1>Registrarse</h1>
+        </div>
+        <form id="izq" class="formulario" action="/Alumno/CrearAlu" method="POST">
+            <input class="input-field" placeholder="Nombre" type="text" id="Nombre" name="Nombre" value="@Model.Nombre" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.Nombre)</span><br />
+
+            <input class="input-field" placeholder="Apellido" type="text" id="Apellido" name="Apellido" value="@Model.Apellido" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.Apellido)</span><br />
+
+            <input placeholder="ID de la carrera" class="input-field" type="text" id="IDcarrera" name="IDcarrera" value="@Model.IDcarrera" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.IDcarrera)</span><br /><br />
+
+            <button class="submit-btn">Registrar</button>
+        </form>
+        <br /><br /><br /><br />
+        <div class="caja3">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/Alumno/LogIn'">Ya estoy Registrado/a</button>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+

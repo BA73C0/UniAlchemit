@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Carga Materia";
+}
+
+@model Pruebas2.Models.MateriaViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja5">
+        <div style="text-align: center">
+            <h2>Nueva Materia</h2>
+        </div>
+        <form id="izq" class="formulario" action="/Admin/CargaMateria" method="POST">
+            <input class="input-field" placeholder="ID de la materia" type="text" id="ID" name="ID" value="@Model.ID" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.ID)</span><br />
+
+            <input class="input-field" placeholder="Nombre de la materia" type="text" id="Materia" name="Materia" value="@Model.Materia" />
+
+            <input class="input-field" placeholder="ID de la carrera" type="text" id="IDcarrera" name="IDCarrera" value="@Model.IDcarrera" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.IDcarrera)</span><br />
+
+            <input class="input-field" placeholder="ID de la materia correlativa n1" type="text" id="IDcorrelativa1" name="IDcorrelativa1" value="@Model.IDcorrelativa1" />
+
+            <input class="input-field" placeholder="ID de la materia correlativa n2" type="text" id="IDcorrelativa2" name="IDcorrelativa2" value="@Model.IDcorrelativa2" />
+
+            <input class="input-field" placeholder="Semestre" type="text" id="Semestre" name="Semestre" value="@Model.Semestre" />
+            <br /><br />
+            <button class="submit-btn">Crear</button>
+        </form>
+        <br /><br /><br /><br />
+        <div class="caja2">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/Admin/Index'">Volver</button>
+        </div>
+    </div>
+</body>

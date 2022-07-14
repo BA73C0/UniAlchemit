@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Mis Materias";
+}
+
+@model List<Pruebas2.Models.ReporteViewModel>
+
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <br />
+    <div class="submit-btn3">
+        <h1>Materias</h1>
+    </div>
+    <br />
+    <div class="caja4">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Materia</th>
+                <th>Fecha</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Cancelar</th>
+            </tr>
+            @if (Model[0].Materia != "Ejemplo")
+            {
+                foreach (var inscripcion in Model)
+                {
+                    <tr>
+                        <td>@inscripcion.IDMateria</td>
+                        <td>@inscripcion.Materia</td>
+                        <td>@inscripcion.Fecha</td>
+                        <td>@inscripcion.Nota</td>
+                        @if (inscripcion.Nota >= 4)
+                        {
+                            <td>Aprobado</td>
+                        }
+                        else if (inscripcion.Nota < 4 && inscripcion.Nota > 0)
+                        {
+                            <td>Desaprobado</td>
+                        }
+                        else if (inscripcion.Nota == 0)
+                        {
+                            <td>Cursando</td>
+                        }
+                        else if (inscripcion.Nota == -1)
+                        {
+                            <td>Ausente</td>
+                        }
+                        @if (inscripcion.Nota == 0)
+                        {
+                            <td><a href='@string.Format("https://localhost:44348/Alumno/CancelarIns/{0}", inscripcion.Id)'>Dar de baja</a></td>
+                        }
+                        else
+                        {
+                            <td> </td>
+                        }
+                    </tr>
+                }
+            } 
+
+        </table>
+    </div>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/NuevaInscripcion/{0}", Model[0].IdAlumno)'">Nueva Inscripción</button>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/MateriasAprobadas/{0}", Model[0].IdAlumno)'">Materias Aprobadas</button>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/MateriasRendidas/{0}", Model[0].IdAlumno)'">Materias Rendidas</button>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='https://localhost:44348/Alumno/CrearAlu'">Volver</button>
+    <br />
+    <button class="submit-btn2" onclick="window.location.href='@string.Format("https://localhost:44348/Alumno/BajaCarrera/{0}", Model[0].IdAlumno)'">Dar de baja la carrera</button>
+</body>

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Nueva Carrera";
+}
+
+@model Pruebas2.Models.CarreraViewModel
+
+<body style="background-color: #1BB769; font-family: Arial">
+    <div class="caja">
+        <div style="text-align: center">
+            <h1>Carreras</h1>
+        </div>
+        <form id="izq" class="formulario" action="/Admin/index" method="POST">
+            <input class="input-field" placeholder="ID de la carrera" type="text" id="ID" name="ID" value="@Model.ID" />
+            <span style="color:red">@Html.ValidationMessageFor(m => m.ID)</span><br />
+
+            <input class="input-field" placeholder="Nombre de la carrera" type="text" id="Carrera" name="Carrera" value="@Model.Carrera" />
+            <br /><br /><br />
+            <button class="submit-btn">Crear</button>
+        </form>
+        <br /><br /><br />
+        <div class="caja3">
+            <button class="submit-btn" onclick="window.location.href='https://localhost:44348/Admin/CargaMateria'">Nueva Materia</button>
+        </div>
+    </div>
+</body>
+
+
